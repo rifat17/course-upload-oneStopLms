@@ -33,7 +33,7 @@ Cypress.Commands.add("enableXpath", () => {
   Cypress.config("xpath", "true");
 });
 
-Cypress.Commands.add("login", () => {
+Cypress.Commands.add("login", (email, password) => {
   // cy.request({
   //   method: "POST",
   //   url: "https://api.onestoplms.com/qa/auth/authentication/signin",
@@ -43,32 +43,30 @@ Cypress.Commands.add("login", () => {
   //     password: "maverick@07",
   //   },
   // }).then((resp) => {
-  //   window.localStorage.setItem("userData", JSON.stringify(resp.body.data));
+  //   window.localStorage.setItem("myData", JSON.stringify(resp.body.data));
   // });
 
-  cy.session("login-session", () => {
+    cy.removeLocalStorage("myData");
+    cy.wait(1000)
     cy.visit("https://adminqa.onestoplms.com/");
-    cy.get("#email").type("tanvir.hasan@shadhinlab.com");
-    cy.get("#pass").type("maverick@07");
+    cy.get("#email").type(email);
+    cy.get("#pass").type(password, { sensitive: true });
     cy.get(":nth-child(1) > .btn").click();
-    cy.saveLocalStorage()
-  });
+    cy.wait(1000)
+    
 });
 
 Cypress.Commands.add("logout", () => {
-  // const accessToken = JSON.parse(
-  //   window.localStorage.getItem("userData")
-  // ).accessToken;
-  // console.log("====================================");
-  // console.log(accessToken);
-  // console.log("====================================");
-  // cy.request({
-  //   method: "POST",
-  //   url: "https://api.onestoplms.com/qa/auth/authentication/global-logout",
-  //   body: {
-  //     accessToken,
-  //   },
-  // }).then((resp) => {
-  //   window.localStorage.removeItem("userData");
-  // });
+    const accessToken = JSON.parse(
+    window.localStorage.getItem("myData")
+  ).accessToken;
+
+  cy.request({
+    method: "POST",
+    url: "https://api.onestoplms.com/qa/auth/authentication/global-logout",
+    body: {
+      accessToken,
+    },
+  });
+  cy.wait(1000);
 });
