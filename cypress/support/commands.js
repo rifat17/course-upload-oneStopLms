@@ -46,7 +46,7 @@ Cypress.Commands.add("login", (email, password) => {
   //   window.localStorage.setItem("myData", JSON.stringify(resp.body.data));
   // });
 
-    cy.removeLocalStorage("myData");
+    cy.clearLocalStorage();
     cy.wait(1000)
     cy.visit("https://adminqa.onestoplms.com/");
     cy.get("#email").type(email);
