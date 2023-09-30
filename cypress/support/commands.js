@@ -51,6 +51,7 @@ Cypress.Commands.add("login", () => {
     cy.get("#email").type("tanvir.hasan@shadhinlab.com");
     cy.get("#pass").type("maverick@07");
     cy.get(":nth-child(1) > .btn").click();
+    cy.saveLocalStorage()
   });
 });
 
