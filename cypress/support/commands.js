@@ -57,10 +57,6 @@ Cypress.Commands.add("login", (email, password) => {
 });
 
 Cypress.Commands.add("logout", () => {
-    const accessToken = JSON.parse(
-    window.localStorage.getItem("myData")
-  ).accessToken;
-
   cy.request({
     method: "POST",
     url: "https://api.onestoplms.com/qa/auth/authentication/global-logout",
