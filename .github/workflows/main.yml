@@ -9,3 +9,4 @@ jobs:
       - uses: cypress-io/github-action@v6
         with:
           browser: firefox
+          wait-on-timeout: 30
