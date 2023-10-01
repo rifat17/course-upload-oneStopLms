@@ -30,6 +30,5 @@ describe("User can login with valid email and password", {testIsolation: false},
   after(() => {
     cy.logout();
     cy.clearLocalStorage();
-    // cy.removeLocalStorage("myData");
   });
 });
