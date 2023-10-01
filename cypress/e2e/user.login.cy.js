@@ -15,16 +15,22 @@ describe("User can login with valid email and password", {testIsolation: false},
   });
   it("1-Loggeed in User Can see Dashboard", () => {
     cy.visit("/");
+    cy.wait(10000);
+
     cy.contains("h3", "Welcome To Dashboard")
   });
 
   it("2-Loggeed in User Can see Dashboard",() => {
     cy.visit("/");
+    cy.wait(1000);
+
     cy.contains("h3", "Welcome To Dashboard")
   });
 
   it("3-Loggeed in User Can see Dashboard", () => {
     cy.visit("/");
+    cy.wait(1000);
+
     cy.contains("h3", "Welcome To Dashboard")
   });
   after(() => {
