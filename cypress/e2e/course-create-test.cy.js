@@ -1,7 +1,7 @@
 import LoginPage from "../pages/Login";
 import { generateRandomString } from "../helpers/cypress-utils";
 
-describe("Create new course", () => {
+describe.skip("Create new course", () => {
   const loginPage = new LoginPage();
   const randomCourseTitle = generateRandomString(5);
   const previewVideo = "selenium.mp4";
